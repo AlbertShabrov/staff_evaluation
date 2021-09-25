@@ -5,7 +5,9 @@ import logging
 import os
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
-client = WebClient(token="xoxp-2544523475105-2517184353543-2529431167109-3be38477f87f22e8c8ea7c660b0b2f0d")
+# WebClient insantiates a client that can call API methods
+# When using Bolt, you can use either `app.client` or the `client` passed to listeners.
+client = WebClient(token = "xoxp-2544523475105-2517184353543-2532461217059-eb5db2b1e91d6f03fa87d73e7ca91275")
 logger = logging.getLogger(__name__)
 users_store = {}
 users_identify = []
@@ -52,6 +54,7 @@ def get_users_messages(user_id):
         return create_communication_graph(conversation_history, user_id)
     except SlackApiError as e:
         logger.error("Error creating conversation: {}".format(e))
+
 
 def create_communication_graph(messages, current_user_id):
     graph = {}

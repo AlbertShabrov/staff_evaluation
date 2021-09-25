@@ -31,3 +31,16 @@ GET_USER = """
     where 
         u."id" = %s::uuid
 """
+
+GET_EMPLOYEES_LIST = """
+SELECT users.id, users.name, surname, positions.name as pos
+FROM users
+LEFT JOIN positions ON users.position = positions.id
+"""
+
+GET_EMPLOYEES_RESPONSIBILITY_AREAS = """
+SELECT r.name
+FROM responsibility_areas r
+WHERE 
+        r.user = %s::uuid
+"""

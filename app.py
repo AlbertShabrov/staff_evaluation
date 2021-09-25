@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response
 from flask_cors import CORS
-from competences.competences import get_competences_by_position, get_competences_by_user
+from competences.competences import get_competences_by_position, get_competences_by_user, get_competences_by_user_for_year
 from users.user import get_all_user_info_by_id, get_employees_list, get_communication_graph
 import json
 
@@ -16,6 +16,11 @@ def get_competences_by_position_route():
 @app.route('/api/competence/user', methods=["GET"])
 def get_competences_by_user_route():
     return make_response(json.dumps(get_competences_by_user(request.args.get('id')), ensure_ascii=False))
+
+
+@app.route('/api/competence/user/year', methods=["GET"])
+def get_competences_by_user_for_year_route():
+    return make_response(json.dumps(get_competences_by_user_for_year(request.args.get('id')), ensure_ascii=False))
 
 
 @app.route('/api/user/all_user_info', methods=["GET"])

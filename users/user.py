@@ -1,5 +1,6 @@
 import db
-from users.templates import GET_USER
+from pprint import pprint
+from users.templates import GET_USER, GET_EMPLOYEES_LIST, GET_EMPLOYEES_RESPONSIBILITY_AREAS
 
 
 def get_all_user_info_by_id(id):
@@ -27,3 +28,11 @@ def get_all_user_info_by_id(id):
             res['competences'].append({'competence': competence[0], 'value': competence[1], 'date': competence[2]})
         res['responsibility_areas'] = responsibility_areas
         return res
+
+def get_employees_list():
+    data = db.Database().SqlQuery(GET_EMPLOYEES_LIST)
+    for i in data:
+        data2 = db.Database().SqlQuery(GET_EMPLOYEES_RESPONSIBILITY_AREAS, i['id'])
+        i['responsibility_areas'] = list(map(lambda x: x['name'], data2))
+
+    return data

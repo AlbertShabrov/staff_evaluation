@@ -9,6 +9,7 @@ def get_all_user_info_by_id(id):
     data = db.Database().SqlQuery(GET_USER, id)
     if data:
         res = {
+            'id': data[0]['id'],
             'name': data[0]['name'], 
             'surname': data[0]['surname'], 
             'patronymic': data[0]['patronymic'],
@@ -21,8 +22,8 @@ def get_all_user_info_by_id(id):
         competences = {}
         responsibility_areas = []
         for elem in data:
-            if elem['competence']+ str(elem['date']) not in competences.keys():
-                competences[elem['competence']+ str(elem['date'])] = elem['competence'] + ";" + str(elem['level']) + ";" + str(elem['date'])
+            if (elem['competence'] or '') + str(elem['date']) not in competences.keys():
+                competences[(elem['competence'] or '')+ str(elem['date'])] = (elem['competence'] or '') + ";" + str(elem['level']) + ";" + str(elem['date'])
             if elem['responsibility_area'] not in responsibility_areas:
                 responsibility_areas.append(elem['responsibility_area'])
         for value in competences.values():

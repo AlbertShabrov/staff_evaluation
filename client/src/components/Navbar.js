@@ -45,14 +45,18 @@ const Pills = () => {
 const Settings = () => {
     return (
         <nav className="navbar navbar-expand-lg">
-            <div className="container-fluid d-flex align-items-center justify-content-between col-11">
-                <NavLink
-                    className="text-reset me-4"
-                    to="/settings"
-                    role="button"
-                >
-                    <i className="fas fa-cog fa-2x"></i>
-                </NavLink>
+            <div className="container-fluid d-flex align-items-center justify-content-between col-11 mt-1">
+                <div className="d-flex">
+                    <NavLink
+                        className="text-reset me-4"
+                        to="/settings"
+                        role="button"
+                    >
+                        <i className="fas fa-cog fa-2x"></i>
+                    </NavLink>
+
+                    <a className='text-reset' href="/"><i className="fas fa-sign-out-alt fa-2x"></i></a>
+                </div>
 
                 <a
                     className="dropdown-toggle d-flex align-items-center hidden-arrow"

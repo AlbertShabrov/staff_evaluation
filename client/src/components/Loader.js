@@ -1,5 +1,7 @@
 export const Loader = () => {
     return (
-        <h1>Loading...</h1>
+        <div className="spinner-grow text-center" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
     )
 }

@@ -1,8 +1,18 @@
-import {GET_EMPLOYEE_COMPETENCES, GET_EMPLOYEE_INFO, GET_EMPLOYEES} from "../types";
+import {
+    GET_EMPLOYEE_COMPETENCES,
+    GET_EMPLOYEE_INFO,
+    GET_EMPLOYEES,
+    SWITCH_EMPLOYEE_INFO_LOADER,
+    SWITCH_EMPLOYEES_LOADER
+} from "../types";
 
 const initialState = {
     employees: [],
-    currentEmployee: {}
+    currentEmployee: {},
+    loaders: {
+        employees: false,
+        currentEmployee: false
+    }
 };
 
 export const commonReducer = (state = initialState, action) => {
@@ -16,6 +26,22 @@ export const commonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentEmployee: action.payload
+            }
+        case SWITCH_EMPLOYEES_LOADER:
+            return {
+                ...state,
+                loaders: {
+                    ...state.loaders,
+                    employees: !state.loaders.employees
+                }
+            }
+        case SWITCH_EMPLOYEE_INFO_LOADER:
+            return {
+                ...state,
+                loaders: {
+                    ...state.loaders,
+                    currentEmployee: !state.loaders.currentEmployee
+                }
             }
         default:
             return state;

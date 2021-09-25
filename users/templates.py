@@ -44,3 +44,9 @@ FROM responsibility_areas r
 WHERE 
         r.user = %s::uuid
 """
+
+GET_COMMUNICATION_GRAPH = """
+SELECT u.name, u.surname, u.patronymic, u.slack_id, u.id
+FROM users u
+where u.slack_id in (%s)
+"""

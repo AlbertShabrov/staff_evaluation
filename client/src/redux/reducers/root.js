@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { appReducer } from './appReducer';
+import { commonReducer } from './commonReducer';
 
 export const rootReducer = combineReducers({
-    app: appReducer
+    common: commonReducer
 });

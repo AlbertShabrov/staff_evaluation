@@ -32,7 +32,7 @@ const Pills = () => {
                         <NavLink className='nav-link btn btn-rounded'
                                  to="/common">Сотрудники</NavLink>
                     </li>
-                    <li className="nav-item" style={{ marginLeft: 20 }}>
+                    <li className="nav-item ms-4">
                         <NavLink className='nav-link btn btn-rounded'
                                  to="/actions">Roadmap</NavLink>
                     </li>

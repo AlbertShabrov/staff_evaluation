@@ -18,11 +18,9 @@ function App() {
   return (
     <Router>
       { isAuthenticated && <Navbar /> }
-      <div className="container">
-          <div className="row d-flex justify-content-center">
-              <div className="col se-page">
-                  {routes}
-              </div>
+      <div className="d-flex justify-content-center">
+          <div className="se-page">
+              {routes}
           </div>
       </div>
     </Router>

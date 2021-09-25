@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {AuthPage} from './pages/AuthPage';
 import {ProfilePage} from "./pages/ProfilePage";
-import {CommonAnalysisPage} from "./pages/CommonAnalysisPage";
+import CommonAnalysisPage from "./pages/CommonAnalysisPage";
 import {SettingsPage} from "./pages/SettingsPage";
 import {ActionsPage} from "./pages/ActionsPage";
 

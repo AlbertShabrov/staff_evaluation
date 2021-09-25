@@ -33,7 +33,7 @@ GET_USER = """
 """
 
 GET_EMPLOYEES_LIST = """
-SELECT users.id, users.name, surname, positions.name as pos
+SELECT users.id, users.name, surname, slack_id, positions.name as pos
 FROM users
 LEFT JOIN positions ON users.position = positions.id
 """
@@ -48,5 +48,11 @@ WHERE
 GET_COMMUNICATION_GRAPH = """
 SELECT u.name, u.surname, u.patronymic, u.slack_id, u.id
 FROM users u
-where u.slack_id in (%s)
+WHERE u.slack_id IN {slack_ids}
+"""
+
+GET_SLACK_ID_BY_USER_ID = """
+SELECT u.id
+FROM users u
+WHERE u.slack_id = %s
 """

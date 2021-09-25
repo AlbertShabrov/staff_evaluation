@@ -1,5 +1,6 @@
 .se-common {
     width: 84vw;
+    position: fixed;
 }
 
 .employees-list {

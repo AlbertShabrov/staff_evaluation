@@ -2,12 +2,19 @@ import './Common.css';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
 import EmployeeListItem from '../components/common/EmployeeListItem';
-import {useEffect} from "react";
-import {getEmployees} from "../redux/actions/common";
+import {useEffect, useState} from "react";
+import {getEmployeeInfo, getEmployees} from "../redux/actions/common";
 import {Loader} from "../components/Loader";
+import EmployeeCard from "../components/common/EmployeeCard";
 
-const CommonAnalysisPage = ({getEmployees, employees, currentEmployee, listLoader}) => {
+const CommonAnalysisPage = ({getEmployees, getEmployeeInfo, employees, currentEmployee, listLoader}) => {
+    const [activeTab, setActiveTab] = useState('');
     useEffect(getEmployees, []);
+
+    const employeeChosenHandler = (employeeId) => {
+        setActiveTab(employeeId);
+        getEmployeeInfo(employeeId);
+    }
 
     return (
         <div className='se-common container-fluid'>
@@ -25,14 +32,21 @@ const CommonAnalysisPage = ({getEmployees, employees, currentEmployee, listLoade
                         }
                         <div className="list-group" id="list-tab" role="tablist">
                             {
-                                employees.map((data, index) => <EmployeeListItem itemData={data} key={index}/>)
+                                employees.map((data, index) =>
+                                    <EmployeeListItem
+                                        key={index}
+                                        itemData={data}
+                                        isActive={data.id === activeTab}
+                                        chooseHandler={employeeChosenHandler}
+                                    />
+                                )
                             }
                         </div>
                     </ScrollArea>
                 </div>
                 <div className="col-8">
                     <div className="employee-info tab-content">
-                        { currentEmployee.name }
+                        <EmployeeCard employeeInfo={currentEmployee}/>
                     </div>
                 </div>
             </div>
@@ -43,4 +57,4 @@ export default connect(state => ({
     employees: state.common.employees,
     currentEmployee: state.common.currentEmployee,
     listLoader: state.common.loaders.employees
-}), {getEmployees})(CommonAnalysisPage);
+}), {getEmployees, getEmployeeInfo})(CommonAnalysisPage);

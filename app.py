@@ -1,7 +1,7 @@
 from flask import Flask, request, make_response
 from flask_cors import CORS
 from competences.competences import get_competences_by_position, get_competences_by_user
-from users.user import get_all_user_info_by_id, get_employees_list
+from users.user import get_all_user_info_by_id, get_employees_list, get_communication_graph
 import json
 
 app = Flask(__name__)
@@ -24,7 +24,11 @@ def get_all_user_info_by_id_route():
 
 @app.route('/api/employees', methods=["GET"])
 def get_employees_list_route():
-    return make_response(json.dumps(get_employees_list(), ensure_ascii=False))
+    return make_response(json.dumps(get_employees_list(), ensure_ascii=False))\
+
+@app.route('/api/user/communication_graph', methods=["GET"])
+def get_communication_graph_route():
+    return make_response(json.dumps(get_communication_graph(request.args.get('userId')), ensure_ascii=False))
 
 if __name__ == '__main__':
     app.run(debug=True)

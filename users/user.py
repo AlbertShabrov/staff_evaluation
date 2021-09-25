@@ -2,7 +2,7 @@ import db
 from pprint import pprint
 from analyze_tools.Slack import get_users_messages
 from users.templates import GET_USER, GET_EMPLOYEES_LIST, GET_EMPLOYEES_RESPONSIBILITY_AREAS,\
-    GET_COMMUNICATION_GRAPH
+    GET_COMMUNICATION_GRAPH, GET_SLACK_ID_BY_USER_ID
 
 
 def get_all_user_info_by_id(id):
@@ -41,13 +41,18 @@ def get_employees_list():
     return data
 
 def get_communication_graph(user_id):
-    result = get_users_messages(user_id)
-    data = db.Database().SqlQuery(GET_COMMUNICATION_GRAPH, result.keys())
     graph = []
+    slack_user_id = db.Database().SqlQueryRecord(GET_SLACK_ID_BY_USER_ID, user_id)
+    if not slack_user_id:
+        return []
+
+    result = get_users_messages(slack_user_id)
+
+    data = db.Database().SqlQuery(GET_COMMUNICATION_GRAPH.format(slack_ids=f"""('{"', '".join(result.keys())}')"""))
     for slack_id in result.keys():
-        user = list(filter(lambda x: x['slack_id'] == slack_id, data))[0]
+        user = dict(list(filter(lambda x: x['slack_id'] == slack_id, data))[0])
+        user['contacts'] = result[user['slack_id']]
         del user['slack_id']
         graph.append(user)
-    return graph
 
-get_communication_graph(user_id = "U02F75EADFZ")
+    return graph

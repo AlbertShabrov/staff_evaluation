@@ -1,7 +1,5 @@
-import { HIDE_ALERT, HIDE_INDICATOR, SHOW_ALERT, SHOW_INDICATOR } from './types';
-
 const initialState = {
-
+    ddd: true
 };
 
 export const appReducer = (state = initialState, action) => {

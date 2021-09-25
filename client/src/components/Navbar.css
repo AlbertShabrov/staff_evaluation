@@ -1,0 +1,35 @@
+.se-navbar {
+    height: 80px;
+}
+
+.se-navbar .main {
+    width: 1000px;
+    border-radius: 25px;
+    background-color: #e5e5e5;
+}
+
+.se-navbar .settings {
+    width: 300px;
+    border-radius: 25px;
+    background-color: #e5e5e5;
+}
+
+.navbar {
+    box-shadow: none;
+    border-radius: 25px;
+}
+
+.nav-link {
+    width: 130px;
+    background-color: #e5e5e5;
+    color: #707070;
+}
+
+.nav-link:hover {
+    color: #14213d;
+}
+
+.nav-link.active {
+    background-color: #fca311;
+    color: #000000;
+}

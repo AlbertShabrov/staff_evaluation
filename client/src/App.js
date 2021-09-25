@@ -4,6 +4,7 @@ import {useRoutes} from './routes';
 import {useAuth} from './hooks/auth.hook';
 import {Navbar} from './components/Navbar';
 import {Loader} from './components/Loader';
+import './App.css'
 
 function App() {
   // const {ready, token, login, logout, userId} = useAuth();
@@ -18,7 +19,11 @@ function App() {
     <Router>
       { isAuthenticated && <Navbar /> }
       <div className="container">
-        {routes}
+          <div className="row d-flex justify-content-center">
+              <div className="col se-page">
+                  {routes}
+              </div>
+          </div>
       </div>
     </Router>
   );

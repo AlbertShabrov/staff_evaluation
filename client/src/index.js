@@ -7,11 +7,11 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from './redux/reducers/root';
 import thunk from 'redux-thunk';
+import './index.css';
 
 const store = createStore(
     rootReducer, compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        applyMiddleware(thunk)
     )
 );
 

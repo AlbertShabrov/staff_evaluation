@@ -27,20 +27,21 @@ const EmployeeCard = ({
     }
 
     return (
-        <div className='p-4'>
-            { infoLoader && <Loader /> }
+        <>
             <h1>{ employeeInfo.name } { employeeInfo.surname } { employeeInfo.patronymic }</h1>
+
             { graphLoader && <Loader /> }
-            { CommunicationGraph }
-        </div>
+            <CommunicationGraph graph={graph} graphLoader={graphLoader} employeeId={employeeInfo.id} />
+        </>
     )
 }
 
 const CommunicationGraph = ({ graph, graphLoader, employeeId }) => {
-    if (!employeeId) return;
+    if (!employeeId) return <></>;
 
     if (!graph.length && !graphLoader) {
-        return 'Не удалось загрузить данныe о куммуникации сотрудника. Он не подключен к корпоративной messenger-системе'
+        return 'Не удалось загрузить данные о куммуникации сотрудника. ' +
+            'Он не подключен к корпоративной messenger-системе'
     }
 
     return (

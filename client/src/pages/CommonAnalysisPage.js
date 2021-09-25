@@ -7,7 +7,7 @@ import {getEmployeeInfo, getEmployees} from "../redux/actions/common";
 import {Loader} from "../components/Loader";
 import EmployeeCard from "../components/common/EmployeeCard";
 
-const CommonAnalysisPage = ({getEmployees, getEmployeeInfo, employees, currentEmployee, listLoader}) => {
+const CommonAnalysisPage = ({getEmployees, getEmployeeInfo, employees, currentEmployee, listLoader, infoLoader}) => {
     const [activeTab, setActiveTab] = useState('');
     useEffect(getEmployees, []);
 
@@ -19,7 +19,7 @@ const CommonAnalysisPage = ({getEmployees, getEmployeeInfo, employees, currentEm
     return (
         <div className='se-common container-fluid'>
             <div className="row justify-content-between">
-                <div className="employees-list col-4">
+                <div className="employees-list">
                     <ScrollArea
                         className="area my-3"
                         contentClassName={`content ${listLoader ? 'loading' : ''}`}
@@ -27,9 +27,7 @@ const CommonAnalysisPage = ({getEmployees, getEmployeeInfo, employees, currentEm
                         vertical={true}
                         scrollbar={true}
                     >
-                        {
-                            listLoader && <Loader />
-                        }
+                        { listLoader && <Loader /> }
                         <div className="list-group" id="list-tab" role="tablist">
                             {
                                 employees.map((data, index) =>
@@ -44,10 +42,17 @@ const CommonAnalysisPage = ({getEmployees, getEmployeeInfo, employees, currentEm
                         </div>
                     </ScrollArea>
                 </div>
-                <div className="col-8">
-                    <div className="employee-info tab-content">
+                <div className="employee-info tab-content">
+                    <ScrollArea
+                        className="area p-4"
+                        contentClassName={`content ${infoLoader ? 'loading' : ''}`}
+                        horizontal={false}
+                        vertical={true}
+                        scrollbar={true}
+                    >
+                        { infoLoader && <Loader /> }
                         <EmployeeCard employeeInfo={currentEmployee}/>
-                    </div>
+                    </ScrollArea>
                 </div>
             </div>
         </div>
@@ -56,5 +61,6 @@ const CommonAnalysisPage = ({getEmployees, getEmployeeInfo, employees, currentEm
 export default connect(state => ({
     employees: state.common.employees,
     currentEmployee: state.common.currentEmployee,
-    listLoader: state.common.loaders.employees
+    listLoader: state.common.loaders.employees,
+    infoLoader: state.common.loaders.currentEmployee,
 }), {getEmployees, getEmployeeInfo})(CommonAnalysisPage);

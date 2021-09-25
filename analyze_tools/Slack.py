@@ -5,7 +5,7 @@ import logging
 import os
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
-client = WebClient(token="xoxp-2544523475105-2517184353543-2532345140387-6aa87182eb1f299147e0114e4ea3b18a")
+client = WebClient(token="xoxp-2544523475105-2517184353543-2529431167109-3be38477f87f22e8c8ea7c660b0b2f0d")
 logger = logging.getLogger(__name__)
 users_store = {}
 users_identify = []
@@ -67,7 +67,8 @@ def create_communication_graph(messages, current_user_id):
             else:
                 graph[trimmed_user_id] = 1
 
-    del graph[current_user_id]
+    if graph.get(current_user_id, None):
+        del graph[current_user_id]
     return graph
 
 

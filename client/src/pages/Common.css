@@ -4,6 +4,7 @@
 }
 
 .employees-list {
+    width: 32%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 25px;
     background-color: #F5F5F5;
@@ -33,6 +34,7 @@
 }
 
 .employee-info {
+    width: 65%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 25px;
     background-color: #F5F5F5;

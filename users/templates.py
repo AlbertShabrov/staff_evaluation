@@ -52,7 +52,5 @@ WHERE u.slack_id IN {slack_ids}
 """
 
 GET_SLACK_ID_BY_USER_ID = """
-SELECT u.id
-FROM users u
-WHERE u.slack_id = %s
+SELECT u.slack_id FROM users u WHERE u.id = %s
 """

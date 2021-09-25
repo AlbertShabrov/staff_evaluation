@@ -2,9 +2,7 @@ import {GET_EMPLOYEE_COMPETENCES, GET_EMPLOYEE_INFO, GET_EMPLOYEES} from "../typ
 
 const initialState = {
     employees: [],
-    currentEmployee: {
-        competences: {}
-    }
+    currentEmployee: {}
 };
 
 export const commonReducer = (state = initialState, action) => {
@@ -18,14 +16,6 @@ export const commonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentEmployee: action.payload
-            }
-        case GET_EMPLOYEE_COMPETENCES:
-            return {
-                ...state,
-                currentEmployee: {
-                    ...state.currentEmployee,
-                    competences: action.payload
-                }
             }
         default:
             return state;

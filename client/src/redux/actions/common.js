@@ -1,16 +1,10 @@
 import {GET_EMPLOYEE_INFO, GET_EMPLOYEES} from '../types';
 import axios from 'axios'
+import {baseUrl} from "../../utils";
 
 export const getEmployees = () => {
     return async (dispatch) => {
-        // const response = await axios.get('/api/employees');
-        const response = {
-            data: [
-                {id: 'First', name: 'First', position: 'First____First'},
-                {id: 'Second', name: 'Second', position: 'Second____Second'},
-                {id: 'Third', name: 'Third', position: 'Third____Third'}
-            ]
-        }
+        const response = await axios.get(`${baseUrl}/api/employees`);
 
         dispatch({
             type: GET_EMPLOYEES,
@@ -19,15 +13,13 @@ export const getEmployees = () => {
     }
 }
 
-export const getEmployeeInfo = () => {
+export const getEmployeeInfo = (employeeId) => {
     return async (dispatch) => {
-        // const response = await axios.get('/api/employees');
-        const response = {
-            data: {
-                id: 'First',
-                name: 'First'
+        const response = await axios.get(`${baseUrl}/api/user/all_user_info`, {
+            params: {
+                id: employeeId
             }
-        }
+        });
 
         dispatch({
             type: GET_EMPLOYEE_INFO,

@@ -48,6 +48,9 @@ def get_communication_graph(user_id):
 
     result = get_users_messages(slack_user_id)
 
+    if not result or not result.keys():
+        return []
+
     data = db.Database().SqlQuery(GET_COMMUNICATION_GRAPH.format(slack_ids=f"""('{"', '".join(result.keys())}')"""))
     for slack_id in result.keys():
         user = dict(list(filter(lambda x: x['slack_id'] == slack_id, data))[0])

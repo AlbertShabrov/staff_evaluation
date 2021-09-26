@@ -51,7 +51,7 @@ def get_users_messages(user_id):
                 x['text'] for x in filter(lambda x: x['user'] == user_id, result["messages"])
             ])
 
-        return create_communication_graph(conversation_history, user_id)
+        return conversation_history, user_id
     except SlackApiError as e:
         logger.error("Error creating conversation: {}".format(e))
 

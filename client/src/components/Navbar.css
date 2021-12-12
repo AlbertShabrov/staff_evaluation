@@ -1,35 +1,42 @@
 .se-navbar {
-    height: 80px;
+    height: 77px;
+    background-size: cover !important;
 }
 
-.se-navbar .main {
-    width: 1000px;
-    border-radius: 25px;
-    background-color: #F5F5F5;
+.se-navbar__page-links {
+    flex: 1;
 }
 
-.se-navbar .settings {
-    width: 300px;
-    border-radius: 25px;
-    background-color: #F5F5F5;
+.se-navbar__profile-actions img {
+    width: 19px;
+    height: 19px;
+    margin-left: 16px;
+    cursor: pointer;
 }
 
-.navbar {
-    box-shadow: none;
-    border-radius: 25px;
-}
+/*.se-navbar .main {*/
+/*    width: 1000px;*/
+/*    border-radius: 25px;*/
+/*    background-color: #F5F5F5;*/
+/*}*/
 
-.nav-link {
-    width: 130px;
-    background-color: #e5e5e5;
-    color: #707070;
-}
+/*.se-navbar .settings {*/
+/*    width: 300px;*/
+/*    border-radius: 25px;*/
+/*    background-color: #F5F5F5;*/
+/*}*/
 
-.nav-link:hover {
-    color: #14213d;
-}
+/*.nav-link {*/
+/*    width: 130px;*/
+/*    background-color: #e5e5e5;*/
+/*    color: #707070;*/
+/*}*/
 
-.nav-link.active {
-    background-color: #fca311;
-    color: #000000;
-}
+/*.nav-link:hover {*/
+/*    color: #14213d;*/
+/*}*/
+
+/*.nav-link.active {*/
+/*    background-color: #fca311;*/
+/*    color: #000000;*/
+/*}*/

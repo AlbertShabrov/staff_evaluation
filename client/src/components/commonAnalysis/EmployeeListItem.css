@@ -1,0 +1,33 @@
+.se-employeeListItem {
+    background-size: cover !important;
+    transition: .5s;
+    user-select: none;
+}
+
+.se-employeeListItem__photo {
+    width: 25%;
+}
+
+.se-employeeListItem__content {
+    width: 75%;
+}
+
+.se-employeeListItem__name {
+    font-weight: 400;
+    color: #f8f8f8;
+    font-size: 16px;
+}
+
+.se-employeeListItem__occupation {
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.se-employeeListItem__actions img {
+    margin-right: 7px;
+}
+
+.se-employeeListItem__actions img:nth-child(2) {
+    width: 21px;
+    height: 21px;
+}

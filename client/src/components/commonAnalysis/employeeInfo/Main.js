@@ -9,7 +9,9 @@ export const Main = ({ chosenEmployee, employeeInfo, getEmployeeInfo }) => {
   useEffect(() => chosenEmployee && getEmployeeInfo(chosenEmployee), [chosenEmployee]);
 
   if (!chosenEmployee) {
-    return 'Список острудников еще грузится...'
+    return <div className="se-employeeInfo__section se-employeeInfo__main p-4 d-flex">
+      Список острудников еще грузится...
+    </div>
   }
 
   return (

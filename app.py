@@ -27,8 +27,8 @@ def get_competences_by_user_for_year_route():
 
 
 @app.route('/api/employee/<employee_id>/getInfo', methods=["GET"])
-def get_all_user_info_by_id_route():
-    return make_response(json.dumps(get_all_user_info_by_id(request.args.get('id')), ensure_ascii=False))
+def get_all_user_info_by_id_route(employee_id):
+    return make_response(json.dumps(get_all_user_info_by_id(employee_id), ensure_ascii=False))
 
 @app.route('/api/employee/getAll', methods=["GET"])
 def get_employees_list_route():

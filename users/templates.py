@@ -9,10 +9,15 @@ GET_USER = """
     ,	"gender"
     ,	r."name" "role"
     ,	p."name" "position"
+	,   p."id" "position_id"
     ,	c."name" "competence"
+	,	"competenceid"
+	,	"main"
+	,	"description"
     ,	"value" "level"
     ,	"date"
     ,	ra."name" "responsibility_area"
+	,   "success"
     from "users" u
     left join 
         "users/employee_class" uec on uec."user_id" = u."id"
@@ -33,7 +38,7 @@ GET_USER = """
 """
 
 GET_EMPLOYEES_LIST = """
-SELECT users.id, users.name, surname, slack_id, positions.name as pos
+SELECT users.id, users.name, surname, patronymic, slack_id, positions.name as pos
 FROM users
 LEFT JOIN positions ON users.position = positions.id
 """

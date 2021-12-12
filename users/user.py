@@ -1,6 +1,6 @@
 import db
 from pprint import pprint
-from analyze_tools.Slack import get_users_messages, create_communication_graph
+from analyze_tools.Slackingggg import get_users_messages, create_communication_graph
 from users.templates import GET_USER, GET_EMPLOYEES_LIST, GET_EMPLOYEES_RESPONSIBILITY_AREAS,\
     GET_COMMUNICATION_GRAPH, GET_SLACK_ID_BY_USER_ID
 
@@ -73,5 +73,3 @@ def get_communication_graph(user_id):
         graph.append(user)
 
     return graph
-
-print(get_employees_list())

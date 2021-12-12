@@ -1,10 +1,13 @@
 from sklearn import datasets
 from pprint import pprint
-from Slack import get_users_messages
+from Slackingggg import get_users_messages
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import nltk
 
+
+def getAnalysis():
+    return 'hello'
 
 
 def take_all_users_messages():
@@ -25,6 +28,7 @@ def average_length(message_list):
     for message in message_list:
         count += len(message)
     text_length = count / len(message_list)
+    print("text_length:", text_length)
     if text_length < 21:
         return [1, 0, 0]
     if (text_length > 20 and text_length < 41):
@@ -36,13 +40,11 @@ def data_normalization(messages):
     frequency = []
     for message in messages:
         message_list = messages.get(message)
-        print(message_list)
         sms_string = ' '.join(message_list)
         sms_string = clean_string(sms_string)
         str_list = nltk.word_tokenize(sms_string)
         frequency.append(create_frequency_for_str(str_list) + average_length(message_list))
 
-    print(frequency)
     return frequency
 
 
@@ -50,10 +52,9 @@ def create_frequency_for_str(str_list):
     count = 0
     try:
         for str in str_list:
-            if str == 'да' or str == 'нет':
+            if str.lower() == 'да' or str.lower() == 'нет':
                 count += 1
         frequency = float(count) / float(len(str_list))
-        print(frequency)
         if frequency < 0.11:
             return [1, 0, 0, 0, 0]
         if (frequency > 0.10 and frequency < 0.21):
@@ -83,19 +84,3 @@ def clean_string(str):
     str = str.replace(')', '')
 
     return str
-
-
-frequency = take_all_users_messages()
-model = KMeans(n_clusters=2)
-# Проводим моделирование
-model.fit(frequency)
-
-# Предсказание на единичном примере
-predicted_label = model.predict([[1, 0, 0, 0, 0, 1, 0, 0]])
-
-# Предсказание на всем наборе данных
-all_predictions = model.predict(frequency)
-
-# Выводим предсказания
-print(predicted_label)
-print(all_predictions)

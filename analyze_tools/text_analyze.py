@@ -2,9 +2,10 @@ from sklearn import datasets
 from pprint import pprint
 from Slack import get_users_messages
 from sklearn.cluster import KMeans
+from scipy.spatial import distance as sci_distance
 import matplotlib.pyplot as plt
 import nltk
-
+import numpy as np
 
 
 def take_all_users_messages():
@@ -85,17 +86,32 @@ def clean_string(str):
     return str
 
 
-frequency = take_all_users_messages()
-model = KMeans(n_clusters=2)
-# Проводим моделирование
-model.fit(frequency)
+frequency = np.asarray(take_all_users_messages())
+# model = KMeans(n_clusters=2)
+# # Проводим моделирование
+# model.fit(frequency)
 
 # Предсказание на единичном примере
-predicted_label = model.predict([[1, 0, 0, 0, 0, 1, 0, 0]])
-
-# Предсказание на всем наборе данных
-all_predictions = model.predict(frequency)
+# predicted_label = model.predict([[1, 0, 0, 0, 0, 1, 0, 0]])
+#
+# # Предсказание на всем наборе данных
+# all_predictions = model.predict(frequency)
 
 # Выводим предсказания
-print(predicted_label)
-print(all_predictions)
+# print(predicted_label)
+# print(all_predictions)
+
+
+K = range(1, 20)
+KM = (KMeans(n_clusters=k).fit(frequency) for k in K)
+centroids = (k.cluster_centers_ for k in KM)
+
+D_k = (sci_distance.cdist(frequency, cent, 'euclidean') for cent in centroids)
+dist = (np.min(D, axis=1) for D in D_k)
+avgWithinSS = [sum(d) / frequency.shape[0] for d in dist]
+plt.plot(K, avgWithinSS, 'b*-')
+plt.grid(True)
+plt.xlabel('Number of clusters')
+plt.ylabel('Average within-cluster sum of squares')
+plt.title('Elbow for KMeans clustering')
+plt.show()

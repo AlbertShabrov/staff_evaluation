@@ -1,0 +1,42 @@
+.se-commonAnalysis {
+    position: fixed;
+    width: 100%;
+}
+
+/*.employees-list {*/
+/*    width: 32%;*/
+/*    height: 100%;*/
+/*    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;*/
+/*    border-radius: 25px;*/
+/*    background-color: #F5F5F5;*/
+/*}*/
+
+/*.se-common .area {*/
+/*    max-height: 75vh;*/
+/*    border-radius: 25px;*/
+/*}*/
+
+/*.list-group-item {*/
+/*    border: none;*/
+/*}*/
+
+/*.list-group-item.active {*/
+/*    background-color: #fca311;*/
+/*    color: #000000;*/
+/*}*/
+
+/*.list-group-item:hover:not(.active) {*/
+/*    background-color: #e5e5e5;*/
+/*}*/
+
+/*.se-common .content.loading {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.employee-info {*/
+/*    width: 65%;*/
+/*    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;*/
+/*    border-radius: 25px;*/
+/*    background-color: #F5F5F5;*/
+/*}*/

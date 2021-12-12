@@ -1,0 +1,19 @@
+.se-employeeInfo__main {
+    height: 350px;
+}
+
+.se-employeeInfo__content {
+    width: 70%;
+}
+
+.se-employeeInfo__general {
+    height: 40%;
+}
+
+.se-employeeInfo__photo {
+    width: 20%;
+}
+
+.se-employeeInfo__brief {
+    width: 80%;
+}

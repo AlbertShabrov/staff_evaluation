@@ -1,0 +1,30 @@
+.se-employeeList {
+    width: 25%;
+    padding: 0 30px;
+}
+
+.se-employeeList .area {
+    height: 100vh;
+}
+
+.se-employeeList__panel-search {
+    width: 90%;
+}
+
+.se-employeeList__panel-search input {
+    color: #ffffff;
+    border-radius: 10px;
+    background-position: right !important;
+    background-size: 7% !important;
+    padding-right: 35px !important;
+}
+
+.se-employeeList__panel-search input:focus {
+    color: #ffffff;
+}
+
+.se-employeeList__create {
+    cursor: pointer;
+    width: 10%;
+    text-align: end;
+}

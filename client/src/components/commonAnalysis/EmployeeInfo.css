@@ -1,0 +1,13 @@
+.se-employeeInfo {
+    width: 75%;
+    padding: 0 30px;
+}
+
+.se-employeeInfo .area {
+    height: 100vh;
+}
+
+.se-employeeInfo__section {
+    background-color: #000000;
+    border-radius: 10px;
+}

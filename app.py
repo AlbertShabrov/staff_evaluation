@@ -13,7 +13,7 @@ def get_competences_by_position_route():
     return make_response(json.dumps(get_competences_by_position(request.args.get('id')), ensure_ascii=False))
 
 @app.route('/api/employee/<employee_id>/competence/getAnalysis', methods=["GET"])
-def get_competences_by_position_route():
+def get_competences_by_user_id():
     return make_response(json.dumps(get_competences_by_user_id(request.args.get('id')), ensure_ascii=False))
 
 @app.route('/api/competence/user', methods=["GET"])

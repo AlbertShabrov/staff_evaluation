@@ -41,9 +41,27 @@ export const getEmployeeInfo = (employeeId) => {
 
 export const getCommunicationGraph = (userId) => {
     return async (dispatch) => {
-        dispatch({type: SWITCH_GRAPH_LOADER});
-        const response = await axios.get(`${baseUrl}/api/user/communication_graph`, { params: { userId } });
-        dispatch({type: SWITCH_GRAPH_LOADER});
+        // dispatch({type: SWITCH_GRAPH_LOADER});
+        // const response = await axios.get(`${baseUrl}/api/user/communication_graph`, { params: { userId } });
+        // dispatch({type: SWITCH_GRAPH_LOADER});
+        const response = {
+            data: [
+                {
+                    "name": "Alice",
+                    "surname": "Alicov",
+                    "patronymic": "Alicovich",
+                    "id": "7dd1ea9f-1c7e-45d3-b4df-4eb601e00602",
+                    "contacts": 2
+                },
+                {
+                    "name": "Tiren",
+                    "surname": "Gibs",
+                    "patronymic": "Falovich",
+                    "id": "a08923a3-cbef-4e71-a791-c110d9812829",
+                    "contacts": 1
+                }
+            ]
+        }
 
         dispatch({
             type: GET_COMMUNICATION_GRAPH,

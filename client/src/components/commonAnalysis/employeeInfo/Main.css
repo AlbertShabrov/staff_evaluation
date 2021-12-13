@@ -18,3 +18,12 @@
 .se-employeeInfo__brief {
     width: 80%;
 }
+
+.se-employeeInfo__name {
+    font-size: 36px;
+}
+
+.se-employeeInfo__occupation {
+    color: #9455FA;
+    cursor: pointer;
+}

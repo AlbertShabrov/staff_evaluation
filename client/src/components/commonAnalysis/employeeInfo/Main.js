@@ -25,7 +25,10 @@ export const Main = ({ chosenEmployee, employeeInfo, getEmployeeInfo }) => {
             <div className="se-employeeInfo__name">
               { employeeInfo.surname } { employeeInfo.name } { employeeInfo.patronymic }
             </div>
-            <div className="se-employeeInfo__occupation"></div>
+            <div className="se-employeeInfo__occupation d-flex">
+              { employeeInfo.position }
+              <img src="images/occupation_info.svg" alt="occupation_info" className='ps-3'/>
+            </div>
           </div>
         </div>
         <div className="se-employeeInfo__department"></div>

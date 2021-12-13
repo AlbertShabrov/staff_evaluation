@@ -1,6 +1,6 @@
 import db
 from pprint import pprint
-from analyze_tools.Slackingggg import get_users_messages, create_communication_graph
+from analyze_tools.Slack import get_users_messages, create_communication_graph
 from users.templates import GET_USER, GET_EMPLOYEES_LIST, GET_EMPLOYEES_RESPONSIBILITY_AREAS,\
     GET_COMMUNICATION_GRAPH, GET_SLACK_ID_BY_USER_ID
 
@@ -38,7 +38,7 @@ def get_competences_by_user_id(id):
     for elem in data:
         timeline[str(elem['date'])] = str(elem['level'])
         if (elem['competence'] or '') + str(elem['date']) not in competences.keys():
-            competences[(elem['competence'] or '') + str(elem['date'])] = (elem['competence'] or '') + ";" + str(\
+            competences[(elem['competence'] or '') + str(elem['date'])] = (elem['competence'] or '') + ";" + str(
                 elem['level']) + ";" + str(elem['date']) + ";" + str(elem['main'] or '') + ";" + str(
                 elem['description'])
     for value in competences.values():

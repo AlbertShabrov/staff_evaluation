@@ -4,18 +4,20 @@ import pathlib
 import os
 
 
-def call_all_getAnalysis_methods():
+def call_all_getAnalysis_methods(id):
     current_directory = pathlib.Path('analyze_tools')
     current_pattern = "*.py"
     modules = []
     for current_file in current_directory.glob(current_pattern):
         path = str(current_file)
         path = path.replace('\\', '.')
-        print(path)
+        path = path.replace('.py', '')
         modules.append(path)
-    print(modules)
+    module_result = []
     for value in modules:
-        print(value)
-        module = __import__("analyze_tools.Slackingggg")
-
-call_all_getAnalysis_methods()
+        try:
+            module = import_module(value)
+            module_result.append(module.getAnalysis(id))
+        except AttributeError:
+            pass
+    return module_result

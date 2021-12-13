@@ -13,6 +13,9 @@ users_store = {}
 users_identify = []
 conversations_store = {}
 
+def getAnalysis(id):
+    return 'hello from Slack module!'
+
 
 def fetch_conversations():
     try:

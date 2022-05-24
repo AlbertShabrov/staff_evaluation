@@ -26,6 +26,8 @@ export const getEmployeeInfo = (employeeId) => {
   return async (dispatch) => {
     dispatch({ type: SWITCH_EMPLOYEE_INFO_LOADER });
     const response = await axios.get(`${ baseUrl }/api/employee/${ employeeId }/getInfo`);
+
+    axios.get(`${ baseUrl }/api/employee/${ employeeId }/competence/getAnalysis`);
     dispatch({ type: SWITCH_EMPLOYEE_INFO_LOADER });
 
     dispatch({

@@ -54,6 +54,7 @@ def get_employees_list():
     data = db.Database().SqlQuery(GET_EMPLOYEES_LIST)
     return data
 
+
 def get_communication_graph(user_id):
     graph = []
     slack_user_id = db.Database().SqlQueryScalar(GET_SLACK_ID_BY_USER_ID, user_id)

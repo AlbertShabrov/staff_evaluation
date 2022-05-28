@@ -38,9 +38,15 @@ GET_USER = """
 """
 
 GET_EMPLOYEES_LIST = """
-SELECT users.id, users.name, surname, patronymic, slack_id, positions.name as pos
-FROM users
-LEFT JOIN positions ON users.position = positions.id
+SELECT 
+	u."id", 
+	u."name",
+	u."surname",
+	u."patronymic",
+	pos."position_name" as "position"
+FROM 
+	"User" u
+	LEFT JOIN "Position" pos ON u."pos_id" = pos."id"
 """
 
 GET_EMPLOYEES_RESPONSIBILITY_AREAS = """

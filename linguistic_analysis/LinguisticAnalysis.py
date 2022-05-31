@@ -5,8 +5,8 @@
 import nltk
 
 from db import Database
-from templates import GET_MESSAGES_BY_EP_ID
-from const import TOO_FEW_MESSAGES_ERROR
+from templates import GET_MESSAGES_BY_EP_ID, GET_ACCEPTANCE_DATE
+from const import TOO_FEW_MESSAGES_ERROR, MINIMUM_MESSAGES_TO_ANALYSIS, MINIMUM_DAYS_IN_COMPANY, MINIMUM_DAYS_ERROR
 
 
 class LinguisticAnalysis:
@@ -25,7 +25,12 @@ class LinguisticAnalysis:
         Подготовим данные для анализа
         :return: list
         """
-
         messages = Database.SqlQuery(GET_MESSAGES_BY_EP_ID, self.ep_id, self.date_on, self.date_to)
-        if not messages or messages < 10:
+        acceptance_date = Database.SqlQueryRecord(GET_ACCEPTANCE_DATE, self.ep_id).get('acceptance_date')
+
+        if not messages or messages < MINIMUM_MESSAGES_TO_ANALYSIS:
             return TOO_FEW_MESSAGES_ERROR
+
+        if acceptance_date < MINIMUM_DAYS_IN_COMPANY:
+            return MINIMUM_DAYS_ERROR.format(acceptance_date)
+

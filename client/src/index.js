@@ -9,12 +9,19 @@ import { rootReducer } from './redux/reducers/root';
 import thunk from 'redux-thunk';
 import './index.css';
 
-const store = createStore(
+let store;
+if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+  store = createStore(
     rootReducer, compose(
         applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
-);
+  );
+} else {
+  store = createStore(
+    rootReducer, applyMiddleware(thunk)
+  );
+}
 
 render(
     <React.StrictMode>

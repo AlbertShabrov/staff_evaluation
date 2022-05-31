@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {AuthPage} from './pages/AuthPage';
 import {ProfilePage} from "./pages/ProfilePage";
-import CommonAnalysisPage from "./pages/CommonAnalysisPage";
+import AnalysisPage from "./pages/AnalysisPage";
 import {SettingsPage} from "./pages/SettingsPage";
 import {ActionsPage} from "./pages/ActionsPage";
 
@@ -13,8 +13,8 @@ export const useRoutes = isAuthenticated => {
                 <Route path="/profile/:id">
                     <ProfilePage />
                 </Route>
-                <Route path="/common" exact>
-                    <CommonAnalysisPage />
+                <Route path="/analysis" exact>
+                    <AnalysisPage />
                 </Route>
                 <Route path="/settings" exact>
                     <SettingsPage />
@@ -22,7 +22,7 @@ export const useRoutes = isAuthenticated => {
                 <Route path="/actions" exact>
                     <ActionsPage />
                 </Route>
-                <Redirect to="/common"/>
+                <Redirect to="/analysis"/>
             </Switch>
         );
     }

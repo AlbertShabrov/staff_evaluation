@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { connect } from 'react-redux';
+import { Loader } from "../../Loader";
 
 import Competences from "./Competences";
-import { getEmployeeInfo } from '../../../redux/actions/commonAnalysis';
+import { getEmployeeInfo } from '../../../redux/actions/analysis';
 import './Main.css';
 
-export const Main = ({ chosenEmployee, employeeInfo, getEmployeeInfo }) => {
-  useEffect(() => chosenEmployee && getEmployeeInfo(chosenEmployee), [chosenEmployee]);
+export const Main = ({ infoLoading, employeeInfo, getEmployeeInfo, employeeId }) => {
+  useEffect(() => employeeId && getEmployeeInfo(employeeId), [employeeId]);
 
-  if (!chosenEmployee) {
-    return <div className="se-employeeInfo__section se-employeeInfo__main p-4 d-flex">
-      Список острудников еще грузится...
-    </div>
+  if (!employeeId || infoLoading) {
+    // return <div className="se-employeeInfo__section se-employeeInfo__main p-4 d-flex">
+    //   Список острудников еще грузится...
+    // </div>
+    return <Loader />
   }
 
   return (
@@ -33,12 +35,13 @@ export const Main = ({ chosenEmployee, employeeInfo, getEmployeeInfo }) => {
         </div>
         <div className="se-employeeInfo__department"></div>
       </div>
-      <Competences/>
+
+      {/*<Competences/>*/}
     </div>
   )
 }
 
 export default connect((state) => ({
-  employeeInfo: state.commonAnalysis.currentEmployee,
-  chosenEmployee: state.commonAnalysis.chosenEmployeeFromList
+  employeeInfo: state.analysis.currentEmployee,
+  infoLoading: state.loader.employeeInfo
 }), { getEmployeeInfo })(Main);

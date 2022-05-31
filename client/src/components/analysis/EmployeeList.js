@@ -1,29 +1,22 @@
 import ScrollArea from 'react-scrollbar';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Loader } from "../Loader";
 import EmployeeListItem from "./EmployeeListItem";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MDBTooltip, MDBInput, MDBContainer } from 'mdb-react-ui-kit';
 
 import './EmployeeList.css';
-import { getEmployees } from "../../redux/actions/commonAnalysis";
-import { CHOOSE_EMPLOYEE_FROM_LIST } from "../../redux/types";
+import { getEmployees } from "../../redux/actions/analysis";
 
-export const EmployeeList = ({ employees, chosenEmployee, getEmployees }) => {
-  const dispatch = useDispatch();
+export const EmployeeList = ({
+  employees, listLoading, getEmployees, chosenEmployee, chooseHandler
+}) => {
 
   useEffect(() => {
     getEmployees().then(employees => {
-      chooseEmployee(employees[0].id)
+      chooseHandler(employees[0].id);
     });
   }, []);
-
-  const chooseEmployee = (employeeId) => {
-    dispatch({
-      type: CHOOSE_EMPLOYEE_FROM_LIST,
-      payload: employeeId
-    });
-  }
 
   return (
     <div className='se-employeeList'>
@@ -35,6 +28,7 @@ export const EmployeeList = ({ employees, chosenEmployee, getEmployees }) => {
           <img width='30' height='30' src="images/add_employee.svg" alt="add employee"/>
         </MDBTooltip>
       </div>
+
       <div className="se-employeeList__container mt-3">
         <ScrollArea
           className="area"
@@ -47,19 +41,19 @@ export const EmployeeList = ({ employees, chosenEmployee, getEmployees }) => {
           vertical={ true }
           scrollbar={ true }
         >
-          {/*{ listLoader && <Loader/> }*/ }
-          <div className="list-group">
-            {
-              employees.map((data, index) =>
-                <EmployeeListItem
-                  key={ index }
-                  employee={ data }
-                  isActive={ data.id === chosenEmployee }
-                  chooseHandler={ chooseEmployee }
-                />
-              )
-            }
-          </div>
+          { listLoading
+              ? <Loader/>
+              : <div className="list-group"> {
+                    employees.map((data, index) =>
+                      <EmployeeListItem
+                        key={ index }
+                        employee={ data }
+                        isActive={ data.id === chosenEmployee }
+                        chooseHandler={ chooseHandler }
+                      />
+                    )
+                } </div>
+          }
         </ScrollArea>
       </div>
     </div>
@@ -67,6 +61,6 @@ export const EmployeeList = ({ employees, chosenEmployee, getEmployees }) => {
 }
 
 export default connect((state) => ({
-  employees: state.commonAnalysis.employees,
-  chosenEmployee: state.commonAnalysis.chosenEmployeeFromList
+  employees: state.analysis.employees,
+  listLoading: state.loader.employeeList
 }), { getEmployees })(EmployeeList);

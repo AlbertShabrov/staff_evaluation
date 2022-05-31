@@ -21,7 +21,7 @@ function App() {
           <Router>
               { isAuthenticated && <Navbar /> }
               <div className="se-page">
-                  {routes}
+                  { routes }
               </div>
           </Router>
       </>

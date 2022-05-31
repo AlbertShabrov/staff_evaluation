@@ -3,7 +3,6 @@ import ScrollArea from 'react-scrollbar';
 
 import Main from './employeeInfo/Main';
 import './EmployeeInfo.css';
-// import { Loader } from "../Loader";
 
 export const EmployeeInfo = ({ employeeId }) => {
   return (

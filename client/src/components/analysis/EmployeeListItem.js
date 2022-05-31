@@ -21,7 +21,7 @@ export const EmployeeListItem = ({ employee, isActive, chooseHandler }) => {
           <div className="se-employeeListItem__name">
             { employee.surname } { employee.name } { employee.patronymic }
           </div>
-          <div className="se-employeeListItem__occupation">{ employee.pos }</div>
+          <div className="se-employeeListItem__occupation">{ employee.position }</div>
         </div>
         <div className="se-employeeListItem__actions d-flex justify-content-end">
           <img src="images/settings.svg" alt="settings"/>

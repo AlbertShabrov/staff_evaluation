@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { commonReducer } from './commonReducer';
+import { analysisReducer } from './analysisReducer';
+import { loaderReducer } from './loaderReducer';
 
 export const rootReducer = combineReducers({
-  commonAnalysis: commonReducer
+  analysis: analysisReducer,
+  loader: loaderReducer
 });

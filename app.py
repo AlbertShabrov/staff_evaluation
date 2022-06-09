@@ -4,6 +4,8 @@ from competences.competences import get_competences_by_position, get_competences
 from users.user import get_all_user_info_by_id, get_employees_list, get_communication_graph, get_competences_by_user_id
 from util import call_all_getAnalysis_methods
 from linguistic_analysis.LinguisticAnalysis import LinguisticAnalysis
+from linguistic_analysis.model import LRegression
+
 import json
 
 app = Flask(__name__)
@@ -37,7 +39,7 @@ def get_all_user_info_by_id_route(employee_id):
 
 @app.route('/api/employee/getAll', methods=["GET"])
 def get_employees_list_route():
-    return make_response(json.dumps(get_employees_list(), ensure_ascii=False))\
+    return make_response(json.dumps(get_employees_list(), ensure_ascii=False))
 
 
 @app.route('/api/user/communication_graph', methods=["GET"])

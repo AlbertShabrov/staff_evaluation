@@ -3,19 +3,19 @@ sql-шаблоны для лингвистического анализа
 """
 
 GET_MESSAGES_BY_EP_ID = """
-SELECT 
-    "message", 
-    "date"
-FROM 
-    "Messages"
+SELECT "message"
+FROM "Messages"
 WHERE
-    mes."employee_id" = %s::bigserial AND
-    "date" >= %s::date AND
-    "date" < %s::date
+    "employee_id" = %s::bigint
 """
 
 GET_ACCEPTANCE_DATE = """
 SELECT "acceptance_date"
 FROM "Employee"
-WHERE id = %s::bigserial
+WHERE "id" = %s::bigint
+"""
+
+ADD_ANALYSIS_RESULT = """
+INSERT INTO "Analysis" ("employee_id", "name", "percent", "date")
+VALUES (%s, %s, %s, %s)
 """

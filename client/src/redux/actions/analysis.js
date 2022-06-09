@@ -9,34 +9,7 @@ import { baseUrl } from "../../utils";
 export const getEmployees = () => {
   return async (dispatch) => {
     dispatch({ type: TOGGLE_EMPLOYEES_LIST_LOADER });
-    // const response = await axios.get(`${ baseUrl }/api/employee/getAll`);
-    const response = {
-      data: [{
-        id: 1,
-        name: '11111',
-        surname: '122222',
-        patronymic: '13333',
-        position: '14444'
-      }, {
-        id: 2,
-        name: '21111',
-        surname: '222222',
-        patronymic: '23333',
-        position: '24444'
-      }, {
-        id: 3,
-        name: '31111',
-        surname: '322222',
-        patronymic: '33333',
-        position: '34444'
-      }, {
-        id: 4,
-        name: '41111',
-        surname: '422222',
-        patronymic: '43333',
-        position: '44444'
-      }]
-    };
+    const response = await axios.get(`${ baseUrl }/api/employee/getAll`);
     dispatch({ type: TOGGLE_EMPLOYEES_LIST_LOADER });
 
     dispatch({

@@ -53,8 +53,7 @@ def get_linguistic_analysis_route():
 
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    from svgelements import *
+    app.run(debug=True)
 
 
 

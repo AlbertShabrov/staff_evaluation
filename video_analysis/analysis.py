@@ -51,7 +51,7 @@ if __name__ == '__main__':
     # response = requests.get("http://127.0.0.1:8010/camera/start")
     # print(response.text)
     #
-    # time.sleep(15)
+    # time.sleep(10)
     # response = requests.get("http://127.0.0.1:8010/camera/stop")
     # print(response.text)
 

@@ -34,3 +34,4 @@ GET_COMPETENCES_BY_USER_FOR_YEAR = """
         "userid" = %s::uuid and "date" > %s::timestamp
     ORDER BY "date"
 """
+

@@ -5,7 +5,7 @@ class Database:
     def __init__(self):
         self.conn = psycopg2.connect(
                             host = "10.44.14.63",
-                            database = "postgres",
+                            database = "watch_beyond",
                             user = "postgres",
                             password = "postgres")
 
@@ -50,4 +50,4 @@ class Database:
 
     def SqlQueryRecord(self, request, *params, my_conn=None):
         res = self.SqlQuery(request, *params, my_conn=my_conn)
-        return res[0] if res else res
+        return res[0] if res else None

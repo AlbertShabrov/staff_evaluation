@@ -2,29 +2,27 @@ import db
 from pprint import pprint
 from analyze_tools.Slack import get_users_messages, create_communication_graph
 from users.templates import GET_USER, GET_EMPLOYEES_LIST, GET_EMPLOYEES_RESPONSIBILITY_AREAS,\
-    GET_COMMUNICATION_GRAPH, GET_SLACK_ID_BY_USER_ID
+    GET_COMMUNICATION_GRAPH, GET_SLACK_ID_BY_USER_ID, GET_CHARACTER
 
 
 def get_all_user_info_by_id(id):
-    data = db.Database().SqlQuery(GET_USER, id)
-    if data:
-        res = {
-            'id': data[0]['id'],
-            'name': data[0]['name'], 
-            'surname': data[0]['surname'], 
-            'patronymic': data[0]['patronymic'],
-            'age': data[0]['age'],
-            'gender': data[0]['gender'],
-            'role': data[0]['role'],
-            'position': data[0]['position'],
-            'position_id': data[0]['position_id'],
-        }
-        responsibility_areas = {}
-        for elem in data:
-            if elem['responsibility_area'] not in responsibility_areas.keys():
-                responsibility_areas[(elem['responsibility_area'] or '')] = elem['success']
-        res['responsibility_areas'] = responsibility_areas
-        return res
+    data = db.Database().SqlQueryRecord(GET_USER, id)
+    print(data)
+    data['characteristics'] = []
+    characteristics = db.Database().SqlQuery(GET_CHARACTER, id)
+
+    characteristics_list = list(set([characteristic['name'] for characteristic in characteristics]))
+
+    res_list = []
+    for characteristic in characteristics_list:
+        res_dict = {'name': characteristic, 'timeline': {}}
+        for info in characteristics:
+            if info['name'] == res_dict['name']:
+                res_dict['timeline'][info['date'].__str__()] = info['percent']
+        res_list.append(res_dict)
+    data['characteristics'] = res_list
+    print(data)
+    return data
 
 
 def get_competences_by_user_id(id):

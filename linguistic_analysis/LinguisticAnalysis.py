@@ -56,8 +56,8 @@ class LinguisticAnalysis:
         messages_amount = 0 if messages_amount < 50 else 1
         print(messages_amount)
         result = self._get_analysis_by_employee(text_tone_result, ignore_messages, messages_amount)
-        Database().SqlQuery(ADD_ANALYSIS_RESULT, self.ep_id, 'Communication', result, date.today())
-        return [{"ep_id": self.ep_id, "name": "Communication", "result": result}]
+        Database().SqlQuery(ADD_ANALYSIS_RESULT, self.ep_id, 'Коммуникативность', int(result * 100), date.today())
+        return [{"ep_id": self.ep_id, "name": "Коммуникативность", "result": int(result * 100)}]
 
     def data_preparing(self):
         """

@@ -7,21 +7,19 @@ from users.templates import GET_USER, GET_EMPLOYEES_LIST, GET_EMPLOYEES_RESPONSI
 
 def get_all_user_info_by_id(id):
     data = db.Database().SqlQueryRecord(GET_USER, id)
-    print(data)
     data['characteristics'] = []
     characteristics = db.Database().SqlQuery(GET_CHARACTER, id)
-
     characteristics_list = list(set([characteristic['name'] for characteristic in characteristics]))
-
     res_list = []
+
     for characteristic in characteristics_list:
         res_dict = {'name': characteristic, 'timeline': {}}
         for info in characteristics:
             if info['name'] == res_dict['name']:
                 res_dict['timeline'][info['date'].__str__()] = info['percent']
         res_list.append(res_dict)
+
     data['characteristics'] = res_list
-    print(data)
     return data
 
 

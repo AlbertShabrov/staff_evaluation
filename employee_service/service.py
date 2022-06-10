@@ -1,7 +1,6 @@
-from flask import Flask, make_response
+from flask import Flask
 from flask_cors import CORS
 from camera import Recording
-import json
 from multiprocessing import Process
 from multiprocessing.managers import BaseManager
 
@@ -28,7 +27,7 @@ def stop_camera_recording():
     return 'Success'
 
 
-@app.route('/camera/get_last_recording', methods=["POST"])
+@app.route('/camera/get_last_recording', methods=["GET"])
 def get_camera_last_recording():
     return recording.get_file()
 

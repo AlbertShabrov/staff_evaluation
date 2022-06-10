@@ -1,47 +1,31 @@
 import React, { useEffect } from "react";
-import { connect } from 'react-redux';
-import { Loader } from "../../Loader";
 
-import Competences from "./Competences";
-import { getEmployeeInfo } from '../../../redux/actions/analysis';
+import AddModel from "./AddModel";
 import './Main.css';
 
-export const Main = ({ infoLoading, employeeInfo, getEmployeeInfo, employeeId }) => {
-  useEffect(() => employeeId && getEmployeeInfo(employeeId), [employeeId]);
-
-  if (!employeeId || infoLoading) {
-    // return <div className="se-employeeInfo__section se-employeeInfo__main p-4 d-flex">
-    //   Список острудников еще грузится...
-    // </div>
-    return <Loader />
-  }
-
+export const Main = ({ employeeInfo }) => {
   return (
-    <div className="se-employeeInfo__section se-employeeInfo__main p-4 d-flex">
-      <div className="se-employeeInfo__content">
-        <div className="se-employeeInfo__general d-flex">
-          <div className="se-employeeInfo__photo d-flex justify-content-center">
-            <img src='images/user_thumbnail_plug.png' alt="user-thumbnail"/>
+    <div className="se-employeeInfo__main d-flex">
+      <div className="se-employeeInfo__section p-4 d-flex">
+        <div className="se-employeeInfo__photo d-flex justify-content-center">
+          <img  width='150' height='150'
+                src={`images/${ employeeInfo.photo || 'user_thumbnail_plug.png' }`}
+                alt="user-thumbnail"/>
+        </div>
+        <div className="se-employeeInfo__general ms-4">
+          <div className="se-employeeInfo__name">
+            { employeeInfo.surname } { employeeInfo.name } { employeeInfo.patronymic }
           </div>
-          <div className="se-employeeInfo__brief">
-            <div className="se-employeeInfo__name">
-              { employeeInfo.surname } { employeeInfo.name } { employeeInfo.patronymic }
-            </div>
-            <div className="se-employeeInfo__occupation d-flex">
-              { employeeInfo.position }
-              <img src="images/occupation_info.svg" alt="occupation_info" className='ps-3'/>
-            </div>
+          <div className="se-employeeInfo__brief pt-2">
+            { employeeInfo.position }
+            <span className="se-employeeInfo__department"> ({ employeeInfo.department }) </span>
           </div>
         </div>
-        <div className="se-employeeInfo__department"></div>
       </div>
 
-      {/*<Competences/>*/}
+      <AddModel/>
     </div>
   )
-}
+};
 
-export default connect((state) => ({
-  employeeInfo: state.analysis.currentEmployee,
-  infoLoading: state.loader.employeeInfo
-}), { getEmployeeInfo })(Main);
+export default Main;

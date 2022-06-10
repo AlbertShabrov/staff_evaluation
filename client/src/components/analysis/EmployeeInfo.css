@@ -4,10 +4,11 @@
 }
 
 .se-employeeInfo .area {
-    height: 100vh;
+    height: 87vh;
 }
 
 .se-employeeInfo__section {
-    background-color: #000000;
+    background-color: #161822;
     border-radius: 10px;
+    color: #ffffff;
 }

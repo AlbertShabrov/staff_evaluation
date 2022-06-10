@@ -8,6 +8,10 @@
     width: 25%;
 }
 
+.se-employeeListItem__photo img {
+  border-radius: 50%;
+}
+
 .se-employeeListItem__content {
     width: 75%;
 }
@@ -16,6 +20,10 @@
     font-weight: 400;
     color: #f8f8f8;
     font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 75%;
+    text-overflow: ellipsis;
 }
 
 .se-employeeListItem__occupation {

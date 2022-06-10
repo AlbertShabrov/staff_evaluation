@@ -1,29 +1,16 @@
 .se-employeeInfo__main {
-    height: 350px;
-    color: #ffffff;
+  min-height: 200px;
 }
 
-.se-employeeInfo__content {
-    width: 70%;
-}
-
-.se-employeeInfo__general {
-    height: 40%;
-}
-
-.se-employeeInfo__photo {
-    width: 20%;
-}
-
-.se-employeeInfo__brief {
-    width: 80%;
+.se-employeeInfo__main .se-employeeInfo__section {
+  min-width: 60%;
 }
 
 .se-employeeInfo__name {
-    font-size: 36px;
+    font-size: 33px;
+    line-height: 1;
 }
 
-.se-employeeInfo__occupation {
+.se-employeeInfo__department {
     color: #9455FA;
-    cursor: pointer;
 }

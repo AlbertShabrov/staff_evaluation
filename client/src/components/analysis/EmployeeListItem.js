@@ -5,7 +5,7 @@ export const EmployeeListItem = ({ employee, isActive, chooseHandler }) => {
     <div
       className='se-employeeListItem mb-2 py-2 d-flex'
       style={ {
-        background: isActive ? 'url(images/employee_list_item_background.svg) no-repeat' : '#000000',
+        background: isActive ? 'url(images/employee_list_item_background.svg) no-repeat' : '#161822',
         color: '#ffffff',
         height: '82px',
         borderRadius: '10px'
@@ -14,14 +14,16 @@ export const EmployeeListItem = ({ employee, isActive, chooseHandler }) => {
       onClick={ () => chooseHandler(employee.id) }
     >
       <div className="se-employeeListItem__photo d-flex justify-content-center">
-        <img src='images/user_thumbnail_plug.png' alt="user-thumbnail"/>
+        <img  width='50' height='50'
+              src={`images/${employee.photo || 'user_thumbnail_plug.png'}`}
+              alt="user-thumbnail"/>
       </div>
       <div className="se-employeeListItem__content">
         <div className="se-employeeListItem__brief">
           <div className="se-employeeListItem__name">
             { employee.surname } { employee.name } { employee.patronymic }
           </div>
-          <div className="se-employeeListItem__occupation">{ employee.position_name }</div>
+          <div className="se-employeeListItem__occupation">{ employee.position }</div>
         </div>
         <div className="se-employeeListItem__actions d-flex justify-content-end">
           <img src="images/settings.svg" alt="settings"/>
